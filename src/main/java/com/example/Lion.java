@@ -5,28 +5,36 @@ import java.util.List;
 public class Lion {
 
     boolean hasMane;
+    Predator predator; //Объявили переменную predator типа Predator
 
-    public Lion(String sex) throws Exception {
+    // Инъекция зависимости через конструктор
+    public Lion(String sex, Predator predator) throws Exception {
+                // Проверка значения пола и установка hasMane
         if ("Самец".equals(sex)) {
             hasMane = true;
         } else if ("Самка".equals(sex)) {
             hasMane = false;
         } else {
-            throw new Exception("Используйте допустимые значения пола животного - самей или самка");
+            // В случае неверного значения пола выбрасываем исключение
+            throw new Exception("Используйте допустимые значения пола животного - самец или самка");
         }
+
+        // Инъекция зависимости Predator
+        this.predator = predator;
     }
 
-    Feline feline = new Feline();
-
+    // Вызов метода getKittens() зависимости predator
     public int getKittens() {
-        return feline.getKittens();
+        return predator.getKittens();
     }
 
+    // Возвращение значения hasMane
     public boolean doesHaveMane() {
         return hasMane;
     }
 
+    // Вызов метода eatMeat() зависимости predator
     public List<String> getFood() throws Exception {
-        return feline.getFood("Хищник");
+        return predator.eatMeat();
     }
 }
