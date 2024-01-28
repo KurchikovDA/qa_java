@@ -40,4 +40,17 @@ public class LionTest {
         // Проверяем, что метод getFood() возвращает ожидаемый список с элементами
         Assert.assertEquals(Arrays.asList("Животные", "Птицы", "Рыба"), lion.getFood());
     }
+
+    // Тест для проверки исключения при некорректном значении пола
+    @Test(expected = Exception.class)
+    public void testInvalidSex() throws Exception {
+        try {
+            // Пытаемся создать объект Lion с некорректным полом
+            new Lion("НекорректныйПол", predator);
+        } catch (Exception e) {
+            // Проверяем, что ошибка содержит ожидаемое сообщение
+            Assert.assertEquals("Используйте допустимые значения пола животного - самец или самка", e.getMessage());
+            throw e; // Перевыбрасываем исключение для подтверждения, что оно было вызвано
+        }
+    }
 }

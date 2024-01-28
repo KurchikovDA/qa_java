@@ -54,10 +54,4 @@ public class LionParameterizedTest {
         Assert.assertEquals(lion.doesHaveMane(), mockedLion.doesHaveMane());
     }
 
-    // Тест для проверки исключения при некорректном значении пола
-    @Test(expected = Exception.class)
-    public void testInvalidSex() throws Exception {
-        // Пытаемся создать объект Lion с некорректным полом
-        new Lion("НекорректныйПол", predator);
-    }
 }
